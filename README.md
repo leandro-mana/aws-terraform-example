@@ -46,6 +46,6 @@ make tf/deploy/dev
 # Terraform destroy
 make tf/destroy/dev
 ```
-**NOTE:** To destroy Cloudformation, do it via the AWS Web Console, as the infrastructure defined in there implies an S3 Bucket, that has a Retain policy, plus it needs to be empitied before deletion. This is done for security reasons to simulate a production environment in where the Terraform states needs to be preserved. Regarding the AWS Environmental variables, when used in CICD, like [Github Actions](https://docs.github.com/en/actions), should be an [environment secret](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment), to use the same names on different environments.
+**NOTE:** To destroy Cloudformation, do it via the AWS Web Console, as the infrastructure defined in there implies an S3 Bucket, that has a Retain policy, plus it needs to be emptied before deletion. This is done for security reasons to simulate a production environment in where the Terraform states needs to be preserved. Regarding the AWS Environmental variables, when used in CICD, like [Github Actions](https://docs.github.com/en/actions), should be an [environment secret](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment), to use the same names on different environments.
 
 **Contact:** [Leandro Mana](https://www.linkedin.com/in/leandro-mana-2854553b/)
