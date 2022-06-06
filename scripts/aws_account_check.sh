@@ -11,4 +11,5 @@ function aws_account_check {
         echo "AWS Account does not match with Environment"
         exit 1
     fi
+
 }

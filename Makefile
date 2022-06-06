@@ -9,6 +9,10 @@ SHELL=/bin/bash
 # Supported Environments
 ENVS = dev qa prod
 
+# Targets
+DEPLOY_TARGET = Deploy Target
+CICD_LOCAL_ENV_TARGET = Run CICD Docker Image
+
 # Colours for Help Message and INFO formatting
 YELLOW := "\e[1;33m"
 NC := "\e[0m"
@@ -18,10 +22,17 @@ export
 help:
 	$(INFO) "Run: make <target>"
 	$(INFO) "Supported Environments: $$ENVS"
-	@echo -e "\n\tList of Supported Targets:"
-	@echo
-	@echo -e "\tcfn/<env>:\t Cloudformation Deploy"
+	$(INFO) "List of Supported Targets:"
+	@echo -e "cicd_local_env        -> $$CICD_LOCAL_ENV_TARGET"
+	@echo -e "<type>/<action>/<env> -> $$DEPLOY_TARGET"
+	@echo -e "\ttype:cfn action:deploy"
+	@echo -e "\ttype:tf  action:plan|deploy|destroy"	
 
-cfn/%:
-	ENV=$*
-	./scripts/cfn_deploy.sh $$ENV
+cicd_local_env:
+	$(INFO) "$$CICD_LOCAL_ENV_TARGET"
+	source scripts/docker_run.sh
+
+cfn/deploy/% tf/plan/% tf/deploy/% tf/destroy/%:
+	TARGET=$@
+	$(INFO) "$$DEPLOY_TARGET - $$TARGET"
+	./scripts/deploy.sh $$TARGET
