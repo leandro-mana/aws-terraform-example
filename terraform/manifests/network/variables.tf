@@ -1,30 +1,21 @@
-###########
-# Globals #
-###########
-variable "environment"  {
+################################
+# Network Variables Definition #
+################################
+variable "environment" {
   description = "The name of the environment"
-  type        = string
 }
 
-variable "project"  {
-  description = "The name of the project"  
+variable "project" {
+  description = "The name of the project"
   type        = string
+
 }
 
-variable "owner"  {
-  description = "The owner of the project"
-  type        = string
+variable "tags" {
+  description = "The tags for the resource"
+  type        = map(string)
 }
 
-variable "aws_region" {
-  description = "The AWS Region"
-  type        = string
-  default     = "ap-southeast-2"
-}
-
-##################
-# network module # 
-##################
 variable "vpc_cidr" {
   description = "VPC cidr block. Example: 10.0.0.0/16"
   type        = string
@@ -45,16 +36,8 @@ variable "availability_zones" {
   type        = list
 }
 
-
-#######
-# EC2 #
-#######
-variable instance_type {
-  description = "The EC2 Instance Type"
+variable "destination_cidr_block" {
+  description = "Specify all traffic to be routed either trough Internet Gateway or NAT to access the internet"
+  default     = "0.0.0.0/0"
   type        = string
-}
-
-variable instance_count {
-  description = "The amount of EC2 instances to deploy"
-  type        = number
 }
